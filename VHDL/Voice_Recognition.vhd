@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 		------------------------------- Top Level Entity --------------------------------
 		--                                                                             --
-		-- 																								    --
+		-- 									       --														    --
 		--  This is an implementation of a backend of a speech recognition system.     --
 		--  It takes 1000 samples from a voice signal in the frequency domain..        -- 
 		--  Then it compares the signal with stored samples from training stage..      --
@@ -50,11 +50,8 @@ end Voice_recognition;
 		--  Consists of :                                                              --
 		--   * It has one process reacts to (clk, data change, reset button)           --
 		--   * Arrays of trained signals  for digits                                   --
-		--   * FSM with 4 states 																	    --
+		--   * FSM with 4 states 						       -- 										    --
 		--         (receiving , distance calculation, decision, display)               --
-		--                                                                             --
-		--                                                                             --
-		--                                                                             --
 		--                                                                             --
 		---------------------------------------------------------------------------------
 		
@@ -75,7 +72,7 @@ architecture FULL of Voice_recognition is
     signal data    : std_logic_vector(7 downto 0);
 	 
 	 
-	 ------------------------------- Black Magic Starts Here ----------------------------------
+	 ------------------------- Black Magic Starts Here ------------------------------
 	 
 	 begin
 	 
@@ -159,13 +156,13 @@ architecture FULL of Voice_recognition is
 		voice_recognition: process (clk,data,reset)
 		
 		variable index : integer := 0;
-      variable min_number : integer := 2;
+      		variable min_number : integer := 2;
 		variable i, j , m, k: integer range 0 to 999;
 
 		BEGIN
 		
 				--------------------------------------------
-				--					  FSM RESET                --
+				--		FSM RESET                 --
 				--------------------------------------------	
 				If (reset = '1') THEN 
 
@@ -191,8 +188,8 @@ architecture FULL of Voice_recognition is
 				 CASE State IS
 				  
 					--------------------------------------------
-					--					  State 1                  --
-					--	       Data Transmit and storage       --
+					--		 State 1                  --
+					--	  Data Receiving and storage       --
 					--------------------------------------------
 					WHEN A => 
 						state_one <= '0';
@@ -210,8 +207,8 @@ architecture FULL of Voice_recognition is
 							end if;
 						end if;
 					--------------------------------------------
-					--					   State 2                 --
-					--	         Distance Calculation          --
+					--	          State 2                 --
+					--	    Distance Calculation          --
 					--------------------------------------------
 					WHEN B => 
 						 state_one <= '0';
@@ -240,8 +237,8 @@ architecture FULL of Voice_recognition is
 							
 						 end if;
 					--------------------------------------------
-					--				    State 3                   --
-					--	      Comparing with Numbers Arrays    --
+					--	        State 3                   --
+					--	 Comparing with Numbers Arrays    --
 					--------------------------------------------
 					WHEN C => 
 						state_one <= '0';
@@ -258,8 +255,8 @@ architecture FULL of Voice_recognition is
 						state <= D;
 						
 					--------------------------------------------
-					--					  State 4                  --
-					--	  Display Results On Seven Segments    --
+					--		 State 4                  --
+					--   Display Results On Seven Segments    --
 					--------------------------------------------
 					WHEN D=> 
 						state_one <= '0';
@@ -268,35 +265,35 @@ architecture FULL of Voice_recognition is
 						state_four <= '0';
 						---------------------------------------------------
 						n <= "1001000" ;
-					   o <= "0100011" ;
-					   equal <= not "1001000" ;
-					   result <= "1111111" ;
+					   	o <= "0100011" ;
+					   	equal <= not "1001000" ;
+					   	result <= "1111111" ;
 						---------------------------------------------------
 						if (min_number = 0) then
 						-- Display Zero
-					   result <= "1000000";
-				      data_led <= "01010101";
+					 	    result <= "1000000";
+				     		    data_led <= "01010101";
 						end if;
 						
 						if (min_number = 1) then
 						-- Display One
-					   result <= "1111001" ;
-						data_led <= "10101010";
+					            result <= "1111001" ;
+						    data_led <= "10101010";
 						end if;
 
 						if (min_number /= 1 and min_number /= 0) then
-						-- Display One
-					   result <= "1111111" ;
-						data_led <= "11111111";
+						-- Display NOTHING
+					            result <= "1111111" ;
+						    data_led <= "11111111";
 						end if;
 						
 						state_one <= '1';
-					   state_two <= '1';
-					   state_three <= '1';
-					   state_four <= '1';
+					   	state_two <= '1';
+					   	state_three <= '1';
+					   	state_four <= '1';
 						 
-				   --------------------------------------------
-					--			     State Default               --
+				        --------------------------------------------
+					--	      State Default               --
 					--------------------------------------------
 					WHEN others =>
 						State <= A;
