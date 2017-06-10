@@ -3,7 +3,7 @@ Simple Speech Recognition System using MATLAB and VHDL on Altera DE0
  
 # Introduction
  
-This project is a trial to develop a simple functional speech recognition engine on low-end and educational FPGAs like Altera DE0. 
+This project is a trial to develop a simple speech recognition engine on low-end and educational FPGAs like Altera DE0. 
 <br/> <br/>
 The system was designed so as to **recognize the digit (1 or 0)** being spoken into the microphone of laptop then transferred into FPGA over UART. Both industry and academia have spent a considerable effort in this field for developing software and hardware to come up with a robust solution. However, it is because of large number of accents spoken around the world that this conundrum still remains an active area of research.
   
