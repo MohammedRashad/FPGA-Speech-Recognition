@@ -6,7 +6,7 @@ Simple Speech Recognition System using MATLAB and VHDL on Altera DE0
 This project is a trial to develop a simple functional speech recognition engine on low-end and educational FPGAs like Altera DE0. 
 <br/> <br/>
 The system was designed so as to **recognize the digit (1 or 0)** being spoken into the microphone of laptop then transferred into FPGA over UART. Both industry and academia have spent a considerable effort in this field for developing software and hardware to come up with a robust solution. However, it is because of large number of accents spoken around the world that this conundrum still remains an active area of research.
-  <br/> <br/>
+  
 Speech Recognition finds numerous applications including healthcare, artificial intelligence, human computer interaction, Interactive Voice Response Systems, military, avionics etc. Another most important application resides in helping the physically challenged people to interact with the world in a better way.
  
  
@@ -24,10 +24,10 @@ The Speech Recognition Engines are broadly classified into 2 types, namely Patte
  
  <br/>
 Audio Signals are captured using microphones and it’s recorded in the time domain (i.e. varies with time). The problem with human voice signals that they are not stationary and the analysis of such signals in time domain is very complicated problem and computationally costly. 
-  <br/> <br/>
+  
 Here comes the role of spectral analysis, by doing a set of transformations and processing algorithms on the incoming signal, it is converted into a usable form that further analysis can be done on it.
  <br/> <br/>
-## For this I'm are using : 
+ ### For this I'm are using : 
  
 **DFT :**
 The discrete Fourier transform (DFT) converts a finite sequence of equally-spaced samples of a function into an equivalent-length sequence of equally-spaced samples of the discrete-time Fourier transform (DTFT), which is a complex-valued function of frequency.
@@ -45,9 +45,7 @@ The Euclidean distance or Euclidean metric is the "ordinary" straight-line dista
  
  
 **FFT :**
-The FFT is a fast, O[N log(⁡N)] algorithm to compute the Discrete Fourier Transform (DFT), which naively is an O[N^2] computation.
- 
-The FFT operates by decomposing an N point time domain signal into N time domain signals each composed of a single point. The second step is to calculate the N frequency spectra corresponding to these N time domain signals. Lastly, the N spectra are synthesized into a single frequency spectrum.
+The FFT is a fast, O[N log(⁡N)] algorithm to compute the Discrete Fourier Transform (DFT), which naively is an O[N^2] computation. The FFT operates by decomposing an N point time domain signal into N time domain signals each composed of a single point. The second step is to calculate the N frequency spectra corresponding to these N time domain signals. Lastly, the N spectra are synthesized into a single frequency spectrum.
 
 
 # Implementation
@@ -55,7 +53,7 @@ The FFT operates by decomposing an N point time domain signal into N time domain
 The system was first intended to be developed in the FPGA only without external equipments but it was impossible to do so due to the limited capabilities of the board we are required to implement into, so we divided the project into 2 stages, the front-end (signal acquisition and analysis) and the back-end (pattern matching and estimation, decision making and UI).
  
 
-**Frontend (MATLAB) : **
+**Frontend (MATLAB) :** 
 The front end is built into matlab due to the ease of doing DSP on it using builtin functions, we have 2 programs, one for training and obtaining a mean signal and the other for real time operation. steps done in matlab are : 
  
 Data Acquisition using microphone.
@@ -65,7 +63,7 @@ Plotting & Data Transmission.
 Files in the Frontend : [train.m, recorder.m]
  
  
-**Backend (Altera DE0) :**
+**Backend (Altera DE0) :** 
 Due to the lack of ADC in Altera DE0 we are transmitting the data from the computer’s microphone using USB to TTL module over the uart protocol, the received data of length (1000) samples are compared then with the saved vectors from the training with matlab, the euclidean distances are calculated and the vector with more probability to be the right one is given a bigger weight, weights are then compared then we are displaying the final results on 7-Segments and LEDs. 
  
 The backend was modelled as a Moore Finite State Machine with 4 states (Receiving, Calculating Distance, Decision Making, Displaying Results).
