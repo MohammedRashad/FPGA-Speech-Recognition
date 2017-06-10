@@ -1,6 +1,7 @@
 # FPGA-Speech-Recognition
-Simple Speech Recognition System using MATLAB and VHDL on Altera DE0
- 
+Simple Speech Recognition System using MATLAB and VHDL on Altera DE0.<br/>
+**[Demo Video here](https://www.youtube.com/watch?v=hxbMyYtls48)**
+
 # Introduction
  
 This project is a trial to develop a simple speech recognition engine on low-end and educational FPGAs like Altera DE0.<br/>
