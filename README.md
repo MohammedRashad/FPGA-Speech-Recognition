@@ -44,8 +44,10 @@ Windowing the data makes sure that the ends match up while keeping everything re
  
 **Euclidean Distance :**<br/>
 The Euclidean distance or Euclidean metric is the "ordinary" straight-line distance between two points in Euclidean space. With this distance, Euclidean space becomes a metric space. The associated norm is called the Euclidean norm. Older literature refers to the metric as Pythagorean metric.
- 
- 
+
+**Hamming Distance :**<br/>
+In information theory, the Hamming distance between two strings of equal length is the number of positions at which the corresponding symbols are different. In other words, it measures the minimum number of substitutions required to change one string into the other, or the minimum number of errors that could have transformed one string into the other. In a more general context, the Hamming distance is one of several string metrics for measuring the edit distance between two sequences.
+
 **FFT :**<br/>
 The FFT is a fast, O[N log(⁡N)] algorithm to compute the Discrete Fourier Transform (DFT), which naively is an O[N^2] computation. The FFT operates by decomposing an N point time domain signal into N time domain signals each composed of a single point. The second step is to calculate the N frequency spectra corresponding to these N time domain signals. Lastly, the N spectra are synthesized into a single frequency spectrum.
 
@@ -78,7 +80,7 @@ Files in the Backend:
 # Design Choices and Work Arounds
  
 **Euclidean Distance Calculation :**<br/>
-Calculation of the euclidean distance for 1000 point length vector is very expensive to do in FPGA directly using for loops, so I did a little trick and calculated the weights of vectors indirectly, by only counting the states where the distance equals zero, this approach is similar to using K-nearest neighbour in machine learning. 
+Calculation of the euclidean distance for 1000 point length vector is very expensive to do in FPGA directly using for loops, so I did a little trick and calculated the weights of vectors indirectly, by only counting the states where the distance equals zero, this approach is similar to using K-nearest neighbour in machine learning. In other words we are really calculating hamming distance inversly. 
  
 **FFT Points Discarding :**<br/>
 Due to the irrelevance of all the frequencies I only took 1000 points and discarded the whole signal, also while taking the FFT I discarded half the signals due to symmetry of the output. 
