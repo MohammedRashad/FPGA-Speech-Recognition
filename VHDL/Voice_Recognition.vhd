@@ -59,17 +59,17 @@ end Voice_recognition;
 architecture FULL of Voice_recognition is
 
 	 --------------------------------- Arrays ------------------------------------
-    type storage is array (999 downto 0) of integer;
-    type state_type IS (A, B, C, D);
+    	type storage is array (999 downto 0) of integer;
+    	type state_type IS (A, B, C, D);
 	 
 	 --------------------------------- Signals ------------------------------------
-	 signal reset : std_logic;
-	 signal state : state_type;   	
-    signal received : storage;
-    signal valid   : std_logic;
-    signal number_one : storage;
-    signal number_zero : storage;
-    signal data    : std_logic_vector(7 downto 0);
+    	signal reset : std_logic;
+    	signal state : state_type;   	
+    	signal received : storage;
+    	signal valid   : std_logic;
+    	signal number_one : storage;
+    	signal number_zero : storage;
+    	signal data    : std_logic_vector(7 downto 0);
 	 
 	 
 	 ------------------------- Black Magic Starts Here ------------------------------
@@ -78,7 +78,7 @@ architecture FULL of Voice_recognition is
 	 
 		reset <= not RST_N;
 		
-      number_zero <= (150,131,101,109,73,163,195,150,119,148,157,125,105,103,99,98,85,91,109,115,95,81,77,84,78,71,74,75,70,58,45,52,
+                number_zero <= (150,131,101,109,73,163,195,150,119,148,157,125,105,103,99,98,85,91,109,115,95,81,77,84,78,71,74,75,70,58,45,52,
 		49,49,38,35,40,40,37,43,46,44,47,44,41,43,36,29,28,34,38,33,32,32,38,35,29,39,29,27,24,26,32,33,29,20,23,30,30,29,
 		25,27,27,25,17,15,19,21,22,20,21,24,21,16,14,14,15,15,16,18,21,23,20,15,17,21,19,18,20,24,24,20,20,23,23,21,21,22,
 		21,22,21,23,22,19,21,21,23,24,19,19,24,19,18,21,19,28,39,37,38,54,64,71,85,97,105,114,124,127,130,135,125,100,91,88,
@@ -173,7 +173,7 @@ architecture FULL of Voice_recognition is
 				 state_three <= '1';
 				 state_four  <= '1';
 				 
-		       i := 0;
+		      		 i := 0;
 				 j := 0;
 				 m := 0;
 				 k := 0;
@@ -247,7 +247,7 @@ architecture FULL of Voice_recognition is
 						state_four <= '1';			
 						
 						if(m < k) then  min_number := 1; 
-					   end if;
+					   	end if;
 						
 						if (m > k) then min_number := 0;
 						end if;
