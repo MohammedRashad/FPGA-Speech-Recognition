@@ -80,7 +80,7 @@ Files in the Backend:
 # Design Choices and Work Arounds
  
 **Euclidean Distance Calculation :**<br/>
-Calculation of the euclidean distance for 1000 point length vector is very expensive to do in FPGA directly using for loops, so I did a little trick and calculated the weights of vectors indirectly, by only counting the states where the distance equals zero, this approach is similar to using K-nearest neighbour in machine learning. In other words we are really calculating hamming distance inversly. 
+Calculation of the euclidean distance for 1000 point length vector is very expensive to do in FPGA directly using for loops, so I did a little trick and calculated the weights of vectors indirectly, by only counting the states where the distance equals zero, this approach is similar to using K-nearest neighbour in machine learning. In other words we are really calculating hamming distance inversely. 
  
 **FFT Points Discarding :**<br/>
 Due to the irrelevance of all the frequencies I only took 1000 points and discarded the whole signal, also while taking the FFT I discarded half the signals due to symmetry of the output. 
